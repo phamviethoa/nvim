@@ -198,6 +198,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_user_command('JupyterOpen', function()
+  local filepath = vim.fn.expand '%:p'
+  if filepath:sub(-6) ~= '.ipynb' then
+    print 'This is not a .ipynb file'
+    return
+  end
+  local cmd = string.format("jupyter lab '%s' &", filepath)
+  vim.fn.jobstart(cmd, { detach = true })
+  print('Opening Jupyter Lab for file: ' .. filepath)
+end, {})
+
+vim.keymap.set('n', '<leader>jl', ':JupyterOpen<CR>', { desc = 'Open in JupyterLab' })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
