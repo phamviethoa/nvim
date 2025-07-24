@@ -111,6 +111,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Quickfix
+vim.keymap.set('n', '<leader>j', '<cmd>cnext<CR>', { desc = 'Move to the next item in Quick Fix list' })
+vim.keymap.set('n', '<leader>k', '<cmd>cprev<CR>', { desc = 'Move to the previous item in Quick Fix list' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -137,7 +141,7 @@ vim.api.nvim_create_user_command('JupyterOpen', function()
   print('Opening Jupyter Lab for file: ' .. filepath)
 end, {})
 
-vim.keymap.set('n', '<leader>jl', ':JupyterOpen<CR>', { desc = 'Open in JupyterLab' })
+vim.keymap.set('n', '<leader>ojl', ':JupyterOpen<CR>', { desc = 'Open in JupyterLab' })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
